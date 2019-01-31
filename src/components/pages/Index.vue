@@ -42,9 +42,9 @@
           <div class="index-board-item-inner">
             <h3>{{item.title}}</h3>
             <p>{{item.description}}</p>
-            <route-link :to="{path: 'detail/' + item.toKey}">
+            <router-link :to="{path: 'detail/' + item.toKey}">
               <button>点击购买</button>
-            </route-link>
+            </router-link>
           </div>
         </div>
       </div>

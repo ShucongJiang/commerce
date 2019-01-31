@@ -25,20 +25,82 @@ export default {
     isShow: false
   },
   data() {
-    return {};
-  },
-  props: {
-    isShow: false
+    return {}
   },
   methods: {
     closeMyself() {
-      this.$emit("close");
+      this.$emit("close")
     }
   }
 };
 </script>
 
 <style scoped>
+/* 弹出对话框动画效果 */
+.dropDialog-enter-active, .dropDialog-leave-active {
+  transition: all ease 0.7s;
+}
 
+.dropDialog-enter {
+  transform: translateY(-500px);
+}
+
+.dropDialog-leave-active {
+  transform: translateY(-500px);
+}
+
+.dialog-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.dialog-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+}
+
+.dialog-container {
+  position: fixed;
+  left: 33%;
+  top:15%;
+  width: 30%;
+  background: #fff;
+  border: 4px solid #fffed7;
+  border-radius: 15px;
+}
+
+.dialog-container .dialog-header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #eee;
+  text-align: center;
+}
+
+.dialog-container .dialog-header .dialog-close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dialog-container .dialog-header .dialog-close:hover {
+  background: #f00;
+}
+
+.dialog-container .dialog-content {
+  padding: 15px;
+}
 </style>
 

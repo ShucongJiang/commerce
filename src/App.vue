@@ -28,6 +28,19 @@
     <div class="app-footer">
       <p>@by jiangshucong 2018-11-19</p>
     </div>
+
+    <myDialog :isShow="isShowLogDialog" @close="closeDialog('isShowLogDialog')">
+      <h3 slot="header-info">请登录</h3>
+      <!-- 登录组件 -->
+      <logForm slot="content-info" @has-login="logSuccess"></logForm>
+    </myDialog>
+
+    <myDialog :isShow="isShowRegDialog" @close="closeDialog('isShowRegDialog')">
+      <h3 slot="header-info">请注册</h3>
+      <!-- 注册组件 -->
+      <regForm slot="content-info" @has-reg="regSuccess"></regForm>
+    </myDialog>
+
     <myDialog :isShow="isShowAboutDialog" @close="closeDialog('isShowAboutDialog')">
       <h3 slot="header-info">关于我们的详细信息</h3>
       <!-- 关于组件 -->
@@ -39,24 +52,56 @@
 <script>
 import Dialog from './components/headerComponents/dialog.vue'
 import AboutInfo from './components/headerComponents/AboutInfo.vue'
+import LogForm from './components/headerComponents/LogForm.vue'
+import RegForm from './components/headerComponents/RegForm.vue'
 
 
 export default {
-  name: 'App',
+  // name: 'App',
   components: {
     myDialog: Dialog,
-    aboutInfo: AboutInfo
+    aboutInfo: AboutInfo,
+    logForm:LogForm,
+    regForm:RegForm
   },
   data () {
     return {
       userName:'',
       isShowAboutDialog: false,
+      isShowLogDialog : false,
+      isShowRegDialog : false
     }
   },
   methods: {
+    // 登录
+    logClick() {
+      this.isShowLogDialog = true
+    },
+    regClick() {
+      this.isShowRegDialog = true
+    },
+    aboutClick () {
+      this.isShowAboutDialog = true
+    },
+
     //通过传参凡是将弹出框统一关闭
     closeDialog (attr) {
-      this[attr] == fasle
+      this[attr] = false
+    },
+
+     /* 登录成功 */
+     logSuccess (userName) {
+       this.isShowLogDialog = false,
+       this.userName = userName
+     },
+
+     /* 注册成功 */
+    regSuccess () {
+      this.isShowRegDialog = false
+    },
+    /* 退出函数 */
+    quit () {
+      this.userName = ''
     }
   }
 }

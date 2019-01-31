@@ -12,7 +12,7 @@
         <li v-for="(item, index) in slides" @click="goto(index)">
           <a :class="{'active' : index === nowIndex}" href="javascript:;">{{index+1}}</a>
         </li>
-        <li @click="goto(preIndex)">&gt;</li>
+        <li @click="goto(nextIndex)">&gt;</li>
       </ul>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
   computed: {
     preIndex() {
       if (this.nowIndex === 0) {
-        return this.slide.length - 1;
+        return this.slides.length - 1;
       } else {
         return this.nowIndex - 1;
       }
